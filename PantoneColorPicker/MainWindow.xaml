@@ -37,6 +37,12 @@
     </Window.Resources>
 
     <TabControl>
+        <TabItem Header="Pick Color">
+            <StackPanel>
+                <ContentControl ContentTemplate="{StaticResource colorPickTemplate}" 
+                                Content="{Binding ColorPicker}"/>
+            </StackPanel>
+        </TabItem>
         <TabItem Header="Averaging">
             <StackPanel>
                 <!-- List of color pickers -->
@@ -53,12 +59,6 @@
                 </StackPanel>
             </StackPanel>
         </TabItem>
-        <TabItem Header="Pick Color">
-            <StackPanel>
-                <ContentControl ContentTemplate="{StaticResource colorPickTemplate}" 
-                                Content="{Binding ColorPicker}"/>
-            </StackPanel>
-        </TabItem>
-
+        
     </TabControl>
 </Window>
