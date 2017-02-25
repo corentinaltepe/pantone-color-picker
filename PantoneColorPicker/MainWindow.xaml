@@ -29,7 +29,7 @@
         <DataTemplate x:Key="colorPickTemplate">
             <StackPanel Orientation = "Horizontal">
                 <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" 
-                         Width = "100" Margin = "3 5 10 5"/>
+                         Width = "107" Margin = "3 5 10 5"/>
 
                 <ContentControl ContentTemplate="{StaticResource colorDisplayTemplate}" 
                                 Content="{Binding Color}"/>
