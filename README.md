@@ -24,6 +24,6 @@ You might have noticed, selecting a single color in Pantone's catalog matching t
 
 
 # Contributions
-This app was developed by [Corentin Altepe](https://github.com/corentinaltepe) and [Deniz Ruzgar Sinoplu](https://github.com/denizruzgar).
+This app was developed in C#/WPF by [Corentin Altepe](https://github.com/corentinaltepe) and [Deniz Ruzgar Sinoplu](https://github.com/denizruzgar).
 
 All contributions are welcomed! You might want to add other catalogs to the app (currently, only the Uncoated catalog is implemented) or add features.
