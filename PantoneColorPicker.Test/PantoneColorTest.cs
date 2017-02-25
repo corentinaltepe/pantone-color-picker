@@ -19,7 +19,7 @@ namespace PantoneColorPicker.Test
         {
             PantoneColor color = PantoneColor.FindColor("250, 230, 40");
 
-            Assert.AreEqual("102 U", color.ToString());
+            Assert.AreEqual("102 U: R255, G236, B45", color.ToString());
             Assert.AreEqual("102 U", color.Name);
             Assert.AreEqual(color.Name, PantoneColor.PantoneCatalog.Where(u => u.Name == "102 U").FirstOrDefault().Name);
         }
@@ -29,7 +29,7 @@ namespace PantoneColorPicker.Test
         {
             PantoneColor color = PantoneColor.FindColor("102 U");
 
-            Assert.AreEqual("102 U", color.ToString());
+            Assert.AreEqual("102 U: R255, G236, B45", color.ToString());
             Assert.AreEqual("102 U", color.Name);
             Assert.AreEqual(color.Name, PantoneColor.PantoneCatalog.Where(u => u.Name == "102 U").FirstOrDefault().Name);
         }

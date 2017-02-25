@@ -164,6 +164,7 @@ namespace PantoneColorPicker.Models
         }
         #endregion
 
+        #region Methods
         /// <summary>
         /// When the current color is a not a standard,
         /// find in the catalog the closest color in RGB values
@@ -202,6 +203,7 @@ namespace PantoneColorPicker.Models
             return Math.Sqrt((rr * rr) + (gg * gg) + (bb * bb));
         }
 
+        #endregion
 
         #region Static Loading Catalog
         static PantoneColor()
@@ -212,7 +214,7 @@ namespace PantoneColorPicker.Models
 
         private static List<PantoneColor> ReadColorCatalog()
         {
-            var text = File.ReadAllText("Resources/pantone.json");
+            var text = PantoneColorPicker.Properties.Resources.pantoneUncoatedJson;
             var catalog = ((JObject)JsonConvert.DeserializeObject(text)).Children().First().Children().First();
 
             List<PantoneColor> Colors = new List<PantoneColor>();

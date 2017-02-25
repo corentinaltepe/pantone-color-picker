@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PantoneColorPicker"
         xmlns:localViewModels="clr-namespace:PantoneColorPicker.ViewModels"
         mc:Ignorable="d"
-        Title="CORENTIN ALTEPE and RUZGAR SINOPLU's Pantone Color Picker - 2017" Height="350" Width="580">
+        Title="CORENTIN ALTEPE and RUZGAR SINOPLU's Pantone Color Picker - 2017" Height="350" Width="580"
+        Icon="pack://application:,,,/favicon.ico" >
     <Window.DataContext>
         <localViewModels:MainViewModel />
     </Window.DataContext>
@@ -28,7 +29,7 @@
         <DataTemplate x:Key="colorPickTemplate">
             <StackPanel Orientation = "Horizontal">
                 <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" 
-                         Width = "100" Margin = "3 5 10 5"/>
+                         Width = "107" Margin = "3 5 10 5"/>
 
                 <ContentControl ContentTemplate="{StaticResource colorDisplayTemplate}" 
                                 Content="{Binding Color}"/>
@@ -37,6 +38,12 @@
     </Window.Resources>
 
     <TabControl>
+        <TabItem Header="Pick Color">
+            <StackPanel>
+                <ContentControl ContentTemplate="{StaticResource colorPickTemplate}" 
+                                Content="{Binding ColorPicker}"/>
+            </StackPanel>
+        </TabItem>
         <TabItem Header="Averaging">
             <StackPanel>
                 <!-- List of color pickers -->
@@ -53,12 +60,6 @@
                 </StackPanel>
             </StackPanel>
         </TabItem>
-        <TabItem Header="Pick Color">
-            <StackPanel>
-                <ContentControl ContentTemplate="{StaticResource colorPickTemplate}" 
-                                Content="{Binding ColorPicker}"/>
-            </StackPanel>
-        </TabItem>
-
+        
     </TabControl>
 </Window>
