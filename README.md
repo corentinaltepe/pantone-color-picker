@@ -7,6 +7,9 @@ Application for Windows enabling picking a color out of Pantone's Uncoated Color
 </kbd>
 
 
+## Download
+Download the application [here](https://github.com/corentinaltepe/pantone-color-picker/releases/latest).
+
 ## Reference Name Search
 Type the reference name to immediatly see the color and its RGB values. Type in capital or lowercase, with our without spaces.
 
