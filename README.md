@@ -19,9 +19,7 @@ You have an RGB and you're looking for the best Pantone color match? Type your R
 You might have noticed, selecting a single color in Pantone's catalog matching the color you want to identify is nearly impossible. So, why selecting only one color? Instead, select as many colors as you think close enough to the color you want to identify and type their references to Pantone Color Picker Averaging. The app will average the RGB values of your selected colors and give you the best match.
 
 
-<kbd>
-![Pantone Color Picker Averaging](https://github.com/corentinaltepe/pantone-color-picker/blob/release/images/anim2.gif "Pantone Color Picker Averaging")
-</kbd>
+![Pantone Color Picker Averaging](https://github.com/corentinaltepe/pantone-color-picker/blob/release/images/anim2.gif?raw=true "Pantone Color Picker Averaging")
 
 
 # Contributions
