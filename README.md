@@ -2,9 +2,7 @@
 Application for Windows enabling picking a color out of Pantone's Uncoated Colors catalog. 2-way search: from reference name to RGB, and from RGB to ref. Matching of the RGB to the closest color and averaging of several picked colors for the best match.
 
 
-<kbd>
-![Pantone Color Picker 2-Way Search](https://github.com/corentinaltepe/pantone-color-picker/blob/release/images/anim1.gif "Pantone Color Picker 2-Way Search")
-</kbd>
+![Pantone Color Picker 2-Way Search](https://github.com/corentinaltepe/pantone-color-picker/blob/master/images/anim1.gif?raw=true "Pantone Color Picker 2-Way Search")
 
 
 ## Download
