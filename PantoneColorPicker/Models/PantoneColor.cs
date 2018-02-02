@@ -113,7 +113,7 @@ namespace PantoneColorPicker.Models
                 }
                 catch { }
             }
-            else if (input.Count() == 3)
+            if (input.Count() == 3)
             {
                 try
                 {
@@ -141,7 +141,8 @@ namespace PantoneColorPicker.Models
                 }
                 catch { }
             }
-            else if(rgb == null)
+
+            if(rgb == null)
             try
             {
                 input = selection.Split(' ');   // with space separator
