@@ -55,7 +55,7 @@ namespace PantoneColorPicker.Models
 
         public override string ToString()
         {
-            return "R" + this.R.ToString() + ", G" + this.G.ToString() + ", B" + this.B.ToString();
+            return "rgb (" + R + ", " + G + ", " + B + ")";
         }
     }
 }

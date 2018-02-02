@@ -2,10 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PantoneColorPicker.Models
 {
@@ -275,7 +272,7 @@ namespace PantoneColorPicker.Models
 
         public override string ToString()
         {
-            return this.Name.ToUpper() + ": " + this.RGB.ToString();
+            return Name.ToUpper() + ": " + RGB + " / " + CMYK;
         }
     }
 }

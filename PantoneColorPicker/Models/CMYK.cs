@@ -57,8 +57,7 @@ namespace PantoneColorPicker.Models
 
         public override string ToString()
         {
-            return this.C.ToString() + "," + this.M.ToString() + "," 
-                    + this.Y.ToString() + "," + this.K.ToString();
+            return "cmyk (" + C + ", " + M + ", " + Y + ", " + K + ")";
         }
     }
 }
