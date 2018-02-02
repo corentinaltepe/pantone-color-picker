@@ -99,25 +99,53 @@ namespace PantoneColorPicker.Models
 
             // If not found parse text as RGB input
             RGB rgb = null;
-            try
+            CMYK cmyk = null;
+            var input = selection.Split(',');   // with comma separator
+            if(input.Count() >= 4)
             {
-                var input = selection.Split(',');   // with comma separator
-                if (input.Count() >= 3)
+                try
+                {
+                    // Create CYMK
+                    cmyk = new CMYK((byte)Int32.Parse(input[0]),
+                                            (byte)(Int32.Parse(input[1])),
+                                            (byte)(Int32.Parse(input[2])),
+                                            (byte)(Int32.Parse(input[3])));
+                }
+                catch { }
+            }
+            else if (input.Count() == 3)
+            {
+                try
                 {
                     // Create RGB
                     rgb = new RGB((byte)(Int32.Parse(input[0])),
                                             (byte)(Int32.Parse(input[1])),
-                                            (byte)(Int32.Parse(input[2])));
+                                        (byte)(Int32.Parse(input[2])));
                 }
+                catch { }
             }
-            catch
-            {}
 
-            if(rgb == null)
+            if(cmyk == null)
+            {
+                try
+                {
+                    input = selection.Split(' ');   // with space separator
+                    if (input.Count() >= 4)
+                    {
+                        // Create CYMK
+                        cmyk = new CMYK((byte)Int32.Parse(input[0]),
+                                                (byte)(Int32.Parse(input[1])),
+                                                (byte)(Int32.Parse(input[2])),
+                                                (byte)(Int32.Parse(input[3])));
+                    }
+                }
+                catch { }
+            }
+            else if(rgb == null)
             try
             {
-                var input = selection.Split(' ');   // with space separator
-                if (input.Count() >= 3)
+                input = selection.Split(' ');   // with space separator
+                if (input.Count() == 3)
                 {
                     // Create RGB
                     rgb = new RGB((byte)(Int32.Parse(input[0])),
@@ -128,7 +156,12 @@ namespace PantoneColorPicker.Models
             catch { }
 
             // Try to pull the closest
-            if (rgb != null)
+            if(cmyk != null)
+            {
+                res = FindClosestColorByCMYK(cmyk);
+                if (res != null) return res.DeepCopy();
+            }
+            else if (rgb != null)
             {
                 res = FindClosestColorByRGB(rgb);
                 if (res != null) return res.DeepCopy();
@@ -137,6 +170,7 @@ namespace PantoneColorPicker.Models
             // Nothing worked, return null
             return null;
         }
+
         public static PantoneColor FindColor(double r, double g, double b)
         {
             // Tries to pull from catalog using reference name
@@ -178,6 +212,12 @@ namespace PantoneColorPicker.Models
             return res;
         }
 
+        private static PantoneColor FindClosestColorByCMYK(CMYK cmyk)
+        {
+            var res = PantoneCatalog.OrderBy(u => u.CMYKdistance(cmyk)).ToList().FirstOrDefault();
+            return res;
+        }
+
         /// <summary>
         /// Returns the distance to another color in terms of RGB distance.
         /// </summary>
@@ -198,6 +238,16 @@ namespace PantoneColorPicker.Models
             var bb = ((double)(this.RGB.B) - b);
 
             return Math.Sqrt((rr * rr) + (gg * gg) + (bb * bb));
+        }
+
+        private double CMYKdistance(CMYK cmyk)
+        {
+            var c = ((double)(this.CMYK.C) - (double)(cmyk.C));
+            var m = ((double)(this.CMYK.M) - (double)(cmyk.M));
+            var y = ((double)(this.CMYK.Y) - (double)(cmyk.Y));
+            var k = ((double)(this.CMYK.K) - (double)(cmyk.K));
+
+            return Math.Sqrt((c * c) + (m * m) + (y * y) + (k * k));
         }
 
         #endregion
