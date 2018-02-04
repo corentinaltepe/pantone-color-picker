@@ -45,23 +45,7 @@ namespace PantoneColorPicker.Models
                 CMYK = this.CMYK.DeepCopy()
             };
         }
-
-        /// <summary>
-        /// Distance with another PantoneColor, used to quantify "closeness" 
-        /// between colors.
-        /// TODO: handle color conversions and implement a real distance calculator
-        /// See: https://www.pantone.com/help/?t=L*a*b-values-for-PANTONE-Coated-colors
-        /// https://stackoverflow.com/questions/1313/followup-finding-an-accurate-distance-between-colors
-        /// https://en.wikipedia.org/wiki/Lab_color_space
-        /// </summary>
-        /// <param name="otherColor"></param>
-        /// <returns></returns>
-        public double Distance(PantoneColor otherColor)
-        {
-            // Return the distance on RGBs (Gaussian distance)
-            return RGB.Distance(otherColor.RGB);
-        }
-        
+                
         public override string ToString()
         {
             return Name.ToUpper() + ": " + RGB + " / " + CMYK;

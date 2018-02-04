@@ -20,6 +20,11 @@ namespace PantoneColorPicker.Services
             _catalog = catalog;
         }
 
+        /// <summary>
+        /// TODO: needs refactoring and better services for color conversions and matching
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public PantoneColor FindBestMatch(PantoneColor color)
         {
             var colors = _catalog.Colors;
@@ -27,8 +32,15 @@ namespace PantoneColorPicker.Services
             if (colors.Contains(color))
                 return color;
 
-            return colors.OrderBy(c => c.Distance(color))
-                         .First();
+            // Match by RGBs
+            if (color.RGB != null)
+                return colors.OrderBy(c => c.RGB.Distance(color.RGB))
+                             .First();
+
+            // Match by CMYK
+            //if (color.CMYK != null)
+                return colors.OrderBy(c => c.CMYK.Distance(color.CMYK))
+                             .First();
         }
     }
 }

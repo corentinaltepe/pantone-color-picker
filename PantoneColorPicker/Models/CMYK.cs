@@ -26,6 +26,16 @@ namespace PantoneColorPicker.Models
             return new CMYK(C, M, Y, K);
         }
 
+        public double Distance(CMYK cmyk)
+        {
+            var c = ((double)(C) - (double)(cmyk.C));
+            var m = ((double)(M) - (double)(cmyk.M));
+            var y = ((double)(Y) - (double)(cmyk.Y));
+            var k = ((double)(K) - (double)(cmyk.K));
+
+            return (c * c) + (m * m) + (y * y) + (k * k);
+        }
+
         public override string ToString()
         {
             return "cmyk (" + C + ", " + M + ", " + Y + ", " + K + ")";

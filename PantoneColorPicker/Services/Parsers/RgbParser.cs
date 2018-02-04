@@ -21,7 +21,7 @@ namespace PantoneColorPicker.Services.Parsers
         {
             var input = userInput.Split(_separator);
 
-            if (input.Count() < 3)
+            if (input.Count() != 3)
                 throw new PantoneColorParsingFailedException("Parsing RGB failed");
 
             try
