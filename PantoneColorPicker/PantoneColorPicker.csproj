@@ -70,6 +70,8 @@
     <Compile Include="Interfaces\IPantoneColorParser.cs" />
     <Compile Include="Interfaces\IPantoneColorCatalog.cs" />
     <Compile Include="Services\ColorFinder.cs" />
+    <Compile Include="Services\Parsers\CmykParser.cs" />
+    <Compile Include="Services\Parsers\RgbParser.cs" />
     <Compile Include="ViewModels\ColorPickerViewModel.cs" />
     <Compile Include="Services\ColorMatcher.cs" />
     <Compile Include="Services\Parsers\NameParser.cs" />

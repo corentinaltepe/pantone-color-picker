@@ -28,7 +28,11 @@ namespace PantoneColorPicker
 
             var parsers = new List<IPantoneColorParser>
             {
-                new NameParser(catalog)
+                new NameParser(catalog),
+                new RgbParser(catalog, ' '),
+                new RgbParser(catalog, ','),
+                new CmykParser(catalog, ' '),
+                new CmykParser(catalog, ',')
             };
             var parser = new PantoneColorParserPipeline(parsers);
             var finder = new ColorFinder(parser, matcher);
