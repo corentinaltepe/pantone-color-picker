@@ -30,7 +30,7 @@ namespace PantoneColorPicker.Models
         public HSL HSL { get; set; }
         public HSB HSB { get; set; }
         public CMYK CMYK { get; set; }
-        
+        /*
         /// <summary>
         /// Pulls the color from the known catalog based on the "selection" text.
         /// First looks for reference name. If not found, tries with RGB and closest with different combinaitions.
@@ -125,6 +125,7 @@ namespace PantoneColorPicker.Models
             if (res != null) return res.DeepCopy();
             return null;
         }
+        */
 
         public PantoneColor DeepCopy()
         {
