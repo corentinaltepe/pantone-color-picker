@@ -22,6 +22,7 @@ namespace PantoneColorPicker.Services.Parsers
             _parsers = parsers;
         }
 
+        // TODO: optimize with parallel calls
         public PantoneColor Parse(string userInput)
         {
             // Go through each of the parsers

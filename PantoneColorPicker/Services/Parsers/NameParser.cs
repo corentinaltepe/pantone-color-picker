@@ -16,6 +16,7 @@ namespace PantoneColorPicker.Services.Parsers
         {
             userInput = userInput.Replace(" ", "").ToLower();
 
+            // Slow calls here. Can we optimize ?
             var color = _catalog.Colors.Where(c => c.Name.Replace(" ", "").ToLower().Equals(userInput))
                                        .FirstOrDefault();
 
