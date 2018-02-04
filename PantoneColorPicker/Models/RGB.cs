@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        private double RGBdistance(RGB otherColor)
+        public double Distance(RGB otherColor)
         {
             var r = ((double)(R) - (double)(otherColor.R));
             var g = ((double)(G) - (double)(otherColor.G));

@@ -125,6 +125,7 @@ namespace PantoneColorPicker.Models
             if (res != null) return res.DeepCopy();
             return null;
         }
+
         public PantoneColor DeepCopy()
         {
             return new PantoneColor()
@@ -140,39 +141,18 @@ namespace PantoneColorPicker.Models
             };
         }
 
-
-        #region Methods
         /// <summary>
-        /// When the current color is a not a standard,
-        /// find in the catalog the closest color in RGB values
+        /// Distance with another PantoneColor, used to quantify "closeness" 
+        /// between colors.
         /// </summary>
+        /// <param name="otherColor"></param>
         /// <returns></returns>
-        private static PantoneColor FindClosestColorByRGB(RGB rgb)
+        public double Distance(PantoneColor otherColor)
         {
-            var res = PantoneCatalog.OrderBy(u => u.RGBdistance(rgb)).ToList().FirstOrDefault();
-            return res;
-        }
-        private static PantoneColor FindClosestColorByRGB(double r, double g, double b)
-        {
-            var res = PantoneCatalog.OrderBy(u => u.RGBdistance(r,g,b)).ToList().FirstOrDefault();
-            return res;
-        }
-        private static PantoneColor FindClosestColorByCMYK(CMYK cmyk)
-        {
-            var res = PantoneCatalog.OrderBy(u => u.CMYKdistance(cmyk)).ToList().FirstOrDefault();
-            return res;
+            // Return the distance on RGBs (Gaussian distance)
+            return RGB.Distance(otherColor.RGB);
         }
         
-        #endregion
-        
-        static PantoneColor()
-        {
-            // Initialize the static catalog (once)
-            PantoneCatalog = ReadColorCatalog();
-        }
-
-        
-
         public override string ToString()
         {
             return Name.ToUpper() + ": " + RGB + " / " + CMYK;
