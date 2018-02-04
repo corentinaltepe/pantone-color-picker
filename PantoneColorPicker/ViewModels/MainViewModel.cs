@@ -1,21 +1,31 @@
-﻿using PantoneColorPicker.Models;
-using System;
-using System.Collections.Generic;
+﻿using PantoneColorPicker.Interfaces;
+using PantoneColorPicker.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PantoneColorPicker.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
-        private ColorPicker colorPicker;
+        private readonly IColorPickerViewModelFactory _colorPickerViewModelFactory;
+        private readonly IColorMatcher _matcher;
+
+        public MainViewModel(
+            IColorPickerViewModelFactory colorPickerViewModelFactory,
+            IColorMatcher matcher)
+        {
+            _colorPickerViewModelFactory = colorPickerViewModelFactory;
+            _matcher = matcher;
+
+            Initialize();
+        }
+
+        private ColorPickerViewModel colorPicker;
         /// <summary>
         /// Used on the right tab to pick any color based on RGB 
         /// or reference number
         /// </summary>
-        public ColorPicker ColorPicker
+        public ColorPickerViewModel ColorPicker
         {
             get { return colorPicker; }
             set
@@ -25,11 +35,11 @@ namespace PantoneColorPicker.ViewModels
             }
         }
 
-        private ObservableCollection<ColorPicker> averageColorPicks;
+        private ObservableCollection<ColorPickerViewModel> averageColorPicks;
         /// <summary>
-        /// List of color picks to be average to match the best color
+        /// List of color picks to be averaged to match the best color
         /// </summary>
-        public ObservableCollection<ColorPicker> AverageColorPicks
+        public ObservableCollection<ColorPickerViewModel> AverageColorPicks
         {
             get { return averageColorPicks; }
             set
@@ -41,6 +51,7 @@ namespace PantoneColorPicker.ViewModels
 
         /// <summary>
         /// Represents the best averaged color based on the AverageColorPicks list
+        /// TODO: move to a business logic service
         /// </summary>
         public PantoneColor AveragedColor {
             get
@@ -53,16 +64,20 @@ namespace PantoneColorPicker.ViewModels
                 double r = picks.Average(u => u.Color.RGB.R);
                 double g = picks.Average(u => u.Color.RGB.G);
                 double b = picks.Average(u => u.Color.RGB.B);
+                var color = new PantoneColor
+                {
+                    RGB = new RGB((byte)r, (byte)g, (byte)b)
+                };
 
                 // Build the closest color based on the RGB
-                return PantoneColor.FindColor(r, g, b);
+                return _matcher.FindBestMatch(color);
             }
         }
 
-        public MainViewModel()
+        private void Initialize()
         {
-            this.ColorPicker = new ColorPicker();
-            this.AverageColorPicks = new ObservableCollection<ColorPicker>();
+            this.ColorPicker = _colorPickerViewModelFactory.Create();
+            this.AverageColorPicks = new ObservableCollection<ColorPickerViewModel>();
 
             // The collection can only ADD elements, not remove them. 
             // At every item added, register an event listener to it.
@@ -74,14 +89,14 @@ namespace PantoneColorPicker.ViewModels
                     {
                         // Add a new color if the last color is valid
                         if (this.AverageColorPicks.Last().Color != null)
-                            this.AverageColorPicks.Add(new ColorPicker());
+                            this.AverageColorPicks.Add(_colorPickerViewModelFactory.Create());
 
                         // Force recalculation of the statistics
                         NotifyPropertyChanged("AveragedColor");
                     };
 
             // Add only 1 item, the others will automatically add up
-            AverageColorPicks.Add(new ColorPicker());
+            AverageColorPicks.Add(_colorPickerViewModelFactory.Create());
         }
 
     }

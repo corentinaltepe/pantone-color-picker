@@ -8,10 +8,6 @@
         mc:Ignorable="d"
         Title="CORENTIN ALTEPE and RUZGAR SINOPLU's Pantone Color Picker - 2017" Height="350" Width="580"
         Icon="pack://application:,,,/favicon.ico" >
-    <Window.DataContext>
-        <localViewModels:MainViewModel />
-    </Window.DataContext>
-
     <Window.Resources>
 
         <DataTemplate x:Key="colorDisplayTemplate">
