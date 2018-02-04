@@ -8,37 +8,10 @@ namespace PantoneColorPicker.Models
 {
     public class CMYK
     {
-        private byte c;
-
-        public byte C
-        {
-            get { return c; }
-            set { c = value; }
-        }
-
-        private byte m;
-
-        public byte M
-        {
-            get { return m; }
-            set { m = value; }
-        }
-
-        private byte y;
-
-        public byte Y
-        {
-            get { return y; }
-            set { y = value; }
-        }
-
-        private byte k;
-
-        public byte K
-        {
-            get { return k; }
-            set { k = value; }
-        }
+        public byte C { get; set; }
+        public byte M { get; set; }
+        public byte Y { get; set; }
+        public byte K { get; set; }
 
         public CMYK():this(0,0,0,0) { }
         public CMYK(byte c, byte m, byte y, byte k)
@@ -48,12 +21,10 @@ namespace PantoneColorPicker.Models
             this.Y = y;
             this.K = k;
         }
-
         public CMYK DeepCopy()
         {
             return new CMYK(C, M, Y, K);
         }
-
 
         public override string ToString()
         {
