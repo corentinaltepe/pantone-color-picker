@@ -63,11 +63,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exceptions\PantoneColorParsingFailedException.cs" />
     <Compile Include="Interfaces\IColorMatcher.cs" />
+    <Compile Include="Interfaces\IPantoneColorParser.cs" />
     <Compile Include="Interfaces\IPantoneColorCatalog.cs" />
     <Compile Include="Models\ColorPicker.cs" />
     <Compile Include="Services\ColorMatcher.cs" />
-    <Compile Include="Services\ColorParser.cs" />
+    <Compile Include="Services\Parsers\NameParser.cs" />
+    <Compile Include="Services\Parsers\PantoneColorParserBase.cs" />
+    <Compile Include="Services\Parsers\PantoneColorParserPipeline.cs" />
     <Compile Include="Services\PantoneColorCatalogAggregate.cs" />
     <Compile Include="Services\PantoneUncoatedCatalogReader.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
